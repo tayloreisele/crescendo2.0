@@ -17,9 +17,9 @@ import java.util.List;
 public class UserHomeController {
 
     @GetMapping
-    public String displayUserLibrary (Model model) {
+    public String displayUserSongs (Model model) {
         model.addAttribute("title","Your Library");
-        model.addAttribute("library", MusicData.getAll());
+        model.addAttribute("songs", MusicData.getAll());
         return "songs/index";
     }
     @GetMapping("create")
