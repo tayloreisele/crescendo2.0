@@ -65,7 +65,6 @@ public class UserHomeController {
         existingSong.setTitle(updatedSong.getTitle());
         existingSong.setMusician(updatedSong.getMusician());
 
-        // Redirect to the songs listing page
         return "redirect:/songs";
     }
     @GetMapping("delete/{id}")
