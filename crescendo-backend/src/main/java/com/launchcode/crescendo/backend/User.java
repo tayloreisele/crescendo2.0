@@ -17,6 +17,8 @@ public class User {
 
     private String email;
 
+    private boolean enabled;
+
     public String getUsername() {
         return username;
     }
@@ -56,6 +58,14 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
 

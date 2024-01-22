@@ -4,6 +4,7 @@ import Login from './Login';
 import LandingPage from './LandingPage';
 import Signup from './Signup';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Verify from './Verify';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path='/verify' element={<Verify />} />
         </Routes>
       </div>
     </Router>
