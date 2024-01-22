@@ -23,6 +23,10 @@
 <td th:text="${song.id}"></td>
 <td th:text="${song.title}"></td>
 <td th:text="${song.musician}"></td>
+    <td>
+        <a th:href="@{/songs/update/{id}(id=${song.id})}">Update</a>
+        <a th:href="@{/songs/delete/{id}(id=${song.id})}">Delete</a>
+    </td>
 
 </tr>
 </table>
