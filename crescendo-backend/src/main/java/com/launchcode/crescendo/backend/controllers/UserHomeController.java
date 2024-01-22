@@ -68,4 +68,9 @@ public class UserHomeController {
         // Redirect to the songs listing page
         return "redirect:/songs";
     }
+    @GetMapping("delete/{id}")
+    public String deleteSong(@PathVariable int id){
+        MusicData.delete(id);
+        return "redirect:/songs";
+    }
 }

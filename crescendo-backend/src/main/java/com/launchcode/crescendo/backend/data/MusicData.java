@@ -17,4 +17,7 @@ public class MusicData {
     public static void add(Song song) {
         songs.put(song.getId(), song);
     }
+    public static void delete(int id){
+        songs.remove(id);
+    }
 }
