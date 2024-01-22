@@ -38,4 +38,34 @@ public class UserHomeController {
         MusicData.add(newSong);
         return "redirect:/songs";
     }
+
+    @GetMapping("update/{id}")
+    public String displayUpdateSongForm(@PathVariable int id, Model model){
+        Song songToUpdate = MusicData.getById(id);
+        if (songToUpdate == null){
+            return "redirect:/songs";
+        }
+        model.addAttribute("title", "Update Song");
+        model.addAttribute("song", songToUpdate);
+        return "songs/update";
+    }
+
+    @PostMapping("update/{id}")
+    public String processUpdateSongForm(@PathVariable int id, @ModelAttribute @Valid Song updatedSong,
+                                        Errors errors, Model model){
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Update Song");
+            return "songs/update";
+        }
+
+        Song existingSong = MusicData.getById(id);
+        if(existingSong == null){
+            return "redirect:/songs";
+        }
+        existingSong.setTitle(updatedSong.getTitle());
+        existingSong.setMusician(updatedSong.getMusician());
+
+        // Redirect to the songs listing page
+        return "redirect:/songs";
+    }
 }
