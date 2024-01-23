@@ -110,4 +110,16 @@ public class UserController {
         userRepository.save(user);
         return ResponseEntity.ok().body("{\"message\":\"Account verified successfully. You may now login at the link below.\"}");
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User user) {
+        User existingUser = userRepository.findByUsername(user.getUsername());
+        if (existingUser != null && existingUser.getPassword().equals(hashPassword(user.getPassword()))) {
+            // User exists and password is correct
+            return ResponseEntity.ok().body("{\"message\":\"Login successful!\"}");
+        } else {
+            // User does not exist or password is incorrect
+            return ResponseEntity.badRequest().body("{\"message\":\"Invalid username or password.\"}");
+        }
+    }
 }

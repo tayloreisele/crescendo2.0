@@ -53,6 +53,7 @@ class Signup extends React.Component {
   render() {
     return (
         <div className='signup-container'>
+            <h1>Sign Up</h1>
             <form className='signup-form' onSubmit={this.handleSubmit}>
                 <label>
                     Username <br/>
@@ -74,7 +75,7 @@ class Signup extends React.Component {
                     <input type="password" name="passwordConfirmation" onChange={this.handleChange} />
                 </label>
                 <br/>
-                <input type="submit" value="Sign Up" />
+                <input type="submit" value="Sign Up" className='link-button'/>
             </form>
             {this.state.message && <p>{this.state.message}</p>}
         </div>
