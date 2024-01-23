@@ -8,13 +8,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("songs")
-public class UserHomeController {
+public class SongController {
 
     @GetMapping
     public String displayUserSongs (Model model) {
