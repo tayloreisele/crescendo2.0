@@ -39,7 +39,6 @@ class Signup extends React.Component {
     })
     .then(data => {
         this.setState({message: data.message});
-        // Redirect to login page or dashboard
     })
     .catch((error) => {
         if (error.message.includes('Username already taken')) {

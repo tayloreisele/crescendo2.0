@@ -23,6 +23,7 @@ function Login() {
 
         if (response.ok) {
             // Login was successful
+            localStorage.setItem('token', data.token); // Stores the token to continue user session
             setMessage('Login successful!');
             navigate('/dashboard');  // Redirect to the dashboard
         } else {
@@ -39,7 +40,7 @@ function Login() {
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
                 <button type="submit" className='link-button'>Login</button>
             </form>
-            <p>{message}</p>
+            {message && <p className='message'>{message}</p>}
         </div>
     );
 }
