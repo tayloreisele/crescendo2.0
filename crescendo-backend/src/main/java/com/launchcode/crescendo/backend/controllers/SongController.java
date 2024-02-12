@@ -1,25 +1,25 @@
 package com.launchcode.crescendo.backend.controllers;
 
 import com.launchcode.crescendo.backend.data.MusicData;
+import com.launchcode.crescendo.backend.data.SongRepository;
 import com.launchcode.crescendo.backend.models.Song;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("songs")
-public class UserHomeController {
+public class SongController {
+    @Autowired
+    private SongRepository songRepository;
 
     @GetMapping
     public String displayUserSongs (Model model) {
         model.addAttribute("title","Your Library");
-        model.addAttribute("songs", MusicData.getAll());
+        model.addAttribute("songs", songRepository.findAll());
         return "songs/index";
     }
     @GetMapping("create")
@@ -35,7 +35,7 @@ public class UserHomeController {
             model.addAttribute("title", "Add new song");
             return "songs/create";
         }
-        MusicData.add(newSong);
+        songRepository.save(newSong);
         return "redirect:/songs";
     }
 
@@ -69,7 +69,7 @@ public class UserHomeController {
     }
     @GetMapping("delete/{id}")
     public String deleteSong(@PathVariable int id){
-        MusicData.delete(id);
+        songRepository.deleteById(id);
         return "redirect:/songs";
     }
 }
