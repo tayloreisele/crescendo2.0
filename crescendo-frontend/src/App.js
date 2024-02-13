@@ -6,11 +6,15 @@ import Signup from './Signup';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Verify from './Verify';
 import Dashboard from './Dashboard';
+import NavBar from './NavBar';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <AuthProvider>
+        <NavBar/>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
@@ -18,6 +22,7 @@ function App() {
           <Route path='/verify' element={<Verify />} />
           <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
+        </AuthProvider>
       </div>
     </Router>
   );

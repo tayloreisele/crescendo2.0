@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 function Dashboard() {
     const [sheets, setSheets] = useState([]);
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!localStorage.getItem('token')) {
+            navigate('/login');
+        }
+    }, [navigate]);
 
     useEffect(() => {
         fetch('http://localhost:8080/files')
@@ -43,9 +51,10 @@ function Dashboard() {
         });
     };
 
+    
+
     return (
         <div className="dashboard">
-            <h1>Welcome to Crescendo</h1>
             <h2>Dashboard</h2>
             <input type="file" id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
             <button onClick={uploadSheet} className="upload-button">Upload Sheet Music</button>
@@ -54,7 +63,6 @@ function Dashboard() {
                 {sheets.map(sheet => (
                     <div key={sheet.id} className="sheet">
                         {sheet.fileType && sheet.data && (
-                        /* <img src={`data:${sheet.fileType};base64,${btoa(String.fromCharCode(...new Uint8Array(sheet.data)))}`} alt={sheet.fileName} /> */
                         <img src={`data:${sheet.fileType};base64,${sheet.data}`} alt={sheet.fileName} />
                         )}
                     </div>
