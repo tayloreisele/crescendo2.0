@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController("/dashboard")
+@CrossOrigin(origins = "http://localhost:3000") // Allows requests from localhost:3000
 //@RequestMapping("songs")//needed for search feature
 public class SongController {
     @Autowired

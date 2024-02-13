@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/songs")
+@CrossOrigin(origins = "http://localhost:3000") // Allows requests from localhost:3000
 public class SearchController {
 
     private SongService songService;

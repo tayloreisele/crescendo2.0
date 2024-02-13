@@ -1,4 +1,4 @@
-package com.launchcode.crescendo.backend;
+package com.launchcode.crescendo.backend.models;
 import jakarta.persistence.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

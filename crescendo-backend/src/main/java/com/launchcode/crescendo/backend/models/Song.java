@@ -3,13 +3,14 @@ package com.launchcode.crescendo.backend.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 
 @Entity
 @Table(name="songs")//annotation is used to provide the details of the table that this entity will be mapped to
 public class Song {
     @Id /*This is a primary key*/
-    @GeneratedValue /*Allows database to generate the values of our primary key*/
+    @GeneratedValue(strategy = GenerationType.IDENTITY) /*Allows database to generate the values of our primary key*/
     @Column(name= "id")//annotation is used to define the properties of the column that will be mapped to the annotated field
     private int id;
 
@@ -61,4 +62,13 @@ public class Song {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", musician='" + musician + '\'' +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
 }

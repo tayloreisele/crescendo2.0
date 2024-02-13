@@ -1,5 +1,6 @@
 package com.launchcode.crescendo.backend;
 
+import com.launchcode.crescendo.backend.models.User;
 import jakarta.persistence.*;
 
 import java.util.Calendar;

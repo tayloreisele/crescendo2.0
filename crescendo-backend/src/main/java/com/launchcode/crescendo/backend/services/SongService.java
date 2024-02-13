@@ -8,4 +8,6 @@ public interface SongService {
     List<Song> searchSongs(String query);
 
     Song createSong(Song song);
+
+    List<Song> getAllSongs();
 }
