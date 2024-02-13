@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Size;
 public class Song {
     @Id /*This is a primary key*/
     @GeneratedValue /*Allows database to generate the values of our primary key*/
+    @Column(name= "id")//annotation is used to define the properties of the column that will be mapped to the annotated field
     private int id;
 
     @NotBlank(message = "Title is required")

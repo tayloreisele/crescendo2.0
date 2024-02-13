@@ -10,7 +10,7 @@
 <li class="nav-item"><a class="nav-link" href="/songs/create">Add New Song</a></li>
 
 
-<table class="table table-striped">
+<table class="table table-striped table-advanced table-hover">
 <thead>
 <tr>
     <th>ID</th>
@@ -35,3 +35,20 @@
 
 </body>
 </html>
+
+// have not tried this out yet
+<form th:action="@{/songs}" method="get">
+    <input id="txtSearch" type="text" name="keyword">
+    <button type="submit">Search</button>
+</form>
+
+<table class ="table table-striped table-advanced table-hover">
+    <tbody>
+        <tr>
+        <th>Photo</th>
+            <th><i class="icon_???"></i>Title</th> ?? could add small icon image for each
+            <th><i></i>Musician/Show Title</th>
+            <th><i></i>Notes</th>
+        </tr>
+    </tbody>
+</table>
