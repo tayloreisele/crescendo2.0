@@ -20,8 +20,8 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public List<Song> searchSongs(String query){
-        List<Song> songs = songRepository.searchSongsSQL(query);
+    public List<Song> searchSongs(String keyword){
+        List<Song> songs = songRepository.findByTitleContaining(keyword);
         return songs;
     }
 

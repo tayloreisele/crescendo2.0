@@ -2,8 +2,6 @@ package com.launchcode.crescendo.backend.repository;
 
 import com.launchcode.crescendo.backend.models.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,12 +21,12 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
 //            "s.musician LIKE CONCAT('%',:query, '%')", nativeQuery = true)
 //    List<Song> searchSongsSQL(String query);
 
-    @Query(value = "SELECT * FROM songs WHERE " +
-            "title LIKE CONCAT('%',:query, '%')" +
-            "musician LIKE CONCAT('%',:query, '%')", nativeQuery = true)
-    List<Song> searchSongsSQL(String query);
+//    @Query(value = "SELECT * FROM songs WHERE " +
+//            "title LIKE CONCAT('%',:query, '%')" +
+//            "musician LIKE CONCAT('%',:query, '%')", nativeQuery = true)
+//    List<Song> searchSongsSQL(String query);
 
    // List<Song>findByTitle(String title); //where title like "%?%"
-    //List<Song>findByTitleOrMusician(String title, String musician);
+    List<Song> findByTitleContaining(String keyword);
 }
 
