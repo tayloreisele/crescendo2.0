@@ -1,7 +1,9 @@
-package com.launchcode.crescendo.backend;
+package com.launchcode.crescendo.backend.controllers;
 
-import com.launchcode.crescendo.backend.User;
-import com.launchcode.crescendo.backend.UserRepository;
+import com.launchcode.crescendo.backend.repository.UserRepository;
+import com.launchcode.crescendo.backend.VerificationToken;
+import com.launchcode.crescendo.backend.repository.VerificationTokenRepository;
+import com.launchcode.crescendo.backend.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
