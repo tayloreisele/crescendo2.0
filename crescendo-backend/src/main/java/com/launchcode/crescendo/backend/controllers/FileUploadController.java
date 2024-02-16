@@ -1,13 +1,12 @@
-package com.launchcode.crescendo.backend;
+package com.launchcode.crescendo.backend.controllers;
+import com.launchcode.crescendo.backend.UploadedFile;
+import com.launchcode.crescendo.backend.repository.UploadedFileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
 

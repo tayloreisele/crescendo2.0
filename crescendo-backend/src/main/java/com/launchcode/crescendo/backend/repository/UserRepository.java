@@ -1,7 +1,6 @@
-package com.launchcode.crescendo.backend;
+package com.launchcode.crescendo.backend.repository;
+import com.launchcode.crescendo.backend.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
