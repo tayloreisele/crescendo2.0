@@ -1,0 +1,25 @@
+
+.background-image-container {
+  background-image: url('../images/EmptyStage.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh; /* Set the height of the container to fill the viewport */
+}
+
+.link-button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #669bbc;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-h2 {
+  font-size: 24px; /* Change the font size */
+  color: #669bbc; /* Change the font color */
+  /*font-family: Dekko*/
+  font-weight: 900
+}

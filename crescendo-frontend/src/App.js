@@ -8,6 +8,8 @@ import Verify from './Verify';
 import Dashboard from './Dashboard';
 import SongTable from './components/SongTable';
 import AddSong from './pages/AddSong';
+//import './pages/AddSong.css';
+//import './images/EmptyStage.jpg';
 
 
 function App() {

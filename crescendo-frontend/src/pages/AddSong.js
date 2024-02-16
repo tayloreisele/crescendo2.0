@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; //allows navigation between pages
+import '../styles/AddSong.css';
+import '../images/EmptyStage.jpg';
 
 // Function for adding new song
 const AddSong = () => {
@@ -34,8 +36,10 @@ const AddSong = () => {
     };
   
     return (
-        <div>
-            <h2>Create New Song</h2>
+        <div className="background-image-container">
+            
+            <h2>Let's Build Your Stage</h2>
+            
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"

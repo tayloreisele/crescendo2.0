@@ -1,0 +1,22 @@
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    flex: 1;
+  }
+  
+  .search-button {
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+
+  
+  

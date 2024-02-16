@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; //used to style table
 import axios from 'axios'; // imported axios for making HTTP requests
+import '../styles/SongTable.css';
+
 
 
 const SongTable = () => {
@@ -45,15 +47,23 @@ const SongTable = () => {
   return (
     <div className="container">
       <h2 className="text-center">Your Music Repertoire</h2>
-      <button className="btn btn-primary mb-2" onClick={handleAddSong}>Add New Song</button>
-      <input
-        type="text"
-        className="form-control mb-2"
-        placeholder="Search By Song Title..."
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-      />
-      <button className="btn btn-primary mb-2" onClick={handleSearch}>Search</button>
+      <div className="search-container">
+        <div>
+          <button className="btn btn-primary mb-2" onClick={handleAddSong}>Add New Song</button>
+        </div>
+        <div className="search-input">
+          <input
+            type="text"
+            className="form-control mb-2"
+            placeholder="Search By Song Title..."
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div> 
+          <button className="btn btn-primary mb-2" onClick={handleSearch}>Search</button>
+        </div>
+      </div> 
       <table className="table table-bordered table-striped table-advanced table-hover">
         <thead>
           <tr>
