@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';//used to style table
-import axios from 'axios'; // Import Axios for making HTTP requests
+import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'; //used to style table
+import axios from 'axios'; // imported axios for making HTTP requests
+
 
 const SongTable = () => {
-  //stores the list of songs
-  const [songs, setSongs] = useState([]);
-  //stores searchterm
-  const [searchTerm, setSearchTerm] = useState('');
-  //stores the filtered songs by id
-  const [filteredSongs, setFilteredSongs] = useState([]);
+  const [filteredSongs, setFilteredSongs] = useState([]);//stores the list of songs by id
+  const [searchTerm, setSearchTerm] = useState('');//stores searchterm
+  const navigate = useNavigate(); //allows navigation between pages
 
   useEffect(() => {
     fetchSongs();
   }, []);
 
-// Fetchs songs from backend server API
+  // Fetches songs from backend server API
   const fetchSongs = async () => {
     try {
-      const response = await fetch('http://localhost:8080/songs');
+      const response = await fetch('http://localhost:8080/api/songs/list');
       if (response.ok) {
         const data = await response.json();
-        setSongs(data);
-        setFilteredSongs(data); // Initialize filteredSongs with all songs
+        setFilteredSongs(data);
       } else {
         console.error('Failed to get songs');
       }
@@ -30,13 +27,7 @@ const SongTable = () => {
       console.error('Failed to fetch songs', error);
     }
   };
-
-// Function to create new song
-  const createNewSong = () => {
-    Navigate('/song');
-  };
-
-// Function to search songs
+  // Function to search songs
   const handleSearch = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/api/songs/search?keyword=${searchTerm}`);
@@ -46,10 +37,15 @@ const SongTable = () => {
     }
   };
 
+  // Function to create new song
+  const handleAddSong = () => {
+    navigate('/addSong'); // Navigate to the add song form
+  };
+
   return (
     <div className="container">
       <h2 className="text-center">Your Music Repertoire</h2>
-      <button className="btn btn-primary mb-2" onClick={createNewSong}>Add New Song</button>
+      <button className="btn btn-primary mb-2" onClick={handleAddSong}>Add New Song</button>
       <input
         type="text"
         className="form-control mb-2"
@@ -57,7 +53,7 @@ const SongTable = () => {
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
       />
-       <button className="btn btn-primary mb-2" onClick={handleSearch}>Search</button>
+      <button className="btn btn-primary mb-2" onClick={handleSearch}>Search</button>
       <table className="table table-bordered table-striped table-advanced table-hover">
         <thead>
           <tr>
@@ -81,6 +77,8 @@ const SongTable = () => {
 };
 
 export default SongTable;
+
+
 
 
 

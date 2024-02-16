@@ -46,7 +46,7 @@ function Dashboard() {
     return (
         <div className="dashboard">
             <h1>Welcome to Crescendo</h1>
-            <h2>Let's Build Your Repertoire</h2>
+            <h2>Dashboard</h2>
             <input type="file" id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
             <button onClick={uploadSheet} className="upload-button">Upload Sheet Music</button>
             <p className='message'>{message}</p>

@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Verify from './Verify';
 import Dashboard from './Dashboard';
 import SongTable from './components/SongTable';
+import AddSong from './pages/AddSong';
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route path='/verify' element={<Verify />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/SongTable' element={<SongTable />} />
+          <Route path='/AddSong' element={<AddSong />} />
         </Routes>
       </div>
     </Router>
