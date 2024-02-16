@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 @Entity
 @Table(name="songs")//annotation is used to provide the details of the table that this entity will be mapped to
 public class Song {
-    @Id /*This is a primary key*/
-    @GeneratedValue(strategy = GenerationType.IDENTITY) /*Allows database to generate the values of our primary key*/
+    @Id //This is a primary key
+    @GeneratedValue //Allows database to generate the values of our primary key
     @Column(name= "id")//annotation is used to define the properties of the column that will be mapped to the annotated field
     private int id;
 
