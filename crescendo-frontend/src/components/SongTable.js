@@ -4,11 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'; //used to style table
 import axios from 'axios'; // imported axios for making HTTP requests
 import '../styles/SongTable.css';
 
-
-
 const SongTable = () => {
-  const [filteredSongs, setFilteredSongs] = useState([]);//stores the list of songs by id
-  const [searchTerm, setSearchTerm] = useState('');//stores searchterm
+  const [filteredSongs, setFilteredSongs] = useState([]); //stores the list of songs by id
+  const [searchTerm, setSearchTerm] = useState(''); //stores search term
+  const [showListAllButton, setShowListAllButton] = useState(false); // To show/hide the "List All" button
   const navigate = useNavigate(); //allows navigation between pages
 
   useEffect(() => {
@@ -22,6 +21,8 @@ const SongTable = () => {
       if (response.ok) {
         const data = await response.json();
         setFilteredSongs(data);
+        // Initially hide the "List All" button
+        setShowListAllButton(false);
       } else {
         console.error('Failed to get songs');
       }
@@ -29,11 +30,14 @@ const SongTable = () => {
       console.error('Failed to fetch songs', error);
     }
   };
+
   // Function to search songs
   const handleSearch = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/api/songs/search?keyword=${searchTerm}`);
       setFilteredSongs(response.data);
+      // Show the "List All" button after the search
+      setShowListAllButton(true);
     } catch (error) {
       console.error('Error searching songs:', error);
     }
@@ -42,6 +46,14 @@ const SongTable = () => {
   // Function to create new song
   const handleAddSong = () => {
     navigate('/addSong'); // Navigate to the add song form
+  };
+
+  // Function to handle "List All" button click
+  const handleListAll = () => {
+    fetchSongs(); // Fetch all songs again
+    setSearchTerm(''); // Clear search term
+    // Hide the "List All" button after resetting
+    setShowListAllButton(false);
   };
 
   return (
@@ -62,33 +74,31 @@ const SongTable = () => {
         </div>
         <div> 
           <button className="btn btn-primary mb-2" onClick={handleSearch}>Search</button>
+          {/* Render the "List All" button only if showListAllButton is true */}
+          {showListAllButton && <button className="btn btn-primary mb-2" onClick={handleListAll}>List All</button>}
         </div>
       </div> 
-      <table className="table table-bordered table-striped table-advanced table-hover">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Musician/Show</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredSongs.map(song => (
-            <tr key={song.id}>
-              <td>{song.title}</td>
-              <td>{song.musician}</td>
-              <td>{song.notes}</td>
+      <div className="table-container"> {/* Added a container for the table */}
+        <table className="table table-bordered table-striped table-advanced table-hover">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Musician/Show</th>
+              <th>Notes</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredSongs.map(song => (
+              <tr key={song.id}>
+                <td>{song.title}</td>
+                <td>{song.musician}</td>
+                <td>{song.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
-};
-
+            }
 export default SongTable;
-
-
-
-
-

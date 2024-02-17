@@ -18,5 +18,28 @@
     margin-left: 10px; /* Adjust the margin as needed */
   }
 
-  
+  /* SongTable.css */
+
+.table-container {
+  max-height: 300px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
+
+/* Optionally, you can style the scrollbar */
+.table-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
   
