@@ -3,23 +3,52 @@
   background-image: url('../images/EmptyStage.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh; /* Set the height of the container to fill the viewport */
+  height: 100vh; /* Sets the height of the container to fill the viewport */
+  /*filter: grayscale(100%); /* Converts the image to black and white */
 }
 
-.link-button {
-  display: inline-block;
-  padding: 10px 20px;
+.create-button {
+  /* display: inline-block; */
+  padding: 7px 10px;
   color: #fff;
   background-color: #669bbc;
-  border-radius: 5px;
-  text-decoration: none;
-  border: none;
+  border-radius: 15px;
+  /* text-decoration: none; */
   cursor: pointer;
+  margin-top: 10px
 }
 
 .custom-h2 {
-  font-size: 24px; /* Change the font size */
-  color: #669bbc; /* Change the font color */
-  /*font-family: Dekko*/
-  font-weight: 900
+  font-size: 54px; 
+  color: #353535; /* font color */
+  font-weight: 1200;
+  margin-bottom: 50px; /* Add margin to separate from the form */  
+}
+
+ .song-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+.newSongForm {
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; /* Align items vertically */
+  align-items: center;
+}
+
+.newSong-div {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  justify-content: center;
+  align-items: center;
+  width: 400px; 
+  height: 300px; 
+  background-color: #f5f5f5; 
+  /* opacity: 0.5;  */
+  
 }

@@ -57,7 +57,7 @@ const SongTable = () => {
   };
 
   return (
-    <div className="container">
+    <div className="containerFor">
       <h2 className="text-center">Your Music Repertoire</h2>
       <div className="search-container">
         <div>

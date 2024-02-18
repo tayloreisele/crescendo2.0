@@ -37,33 +37,35 @@ const AddSong = () => {
   
     return (
         <div className="background-image-container">
-            
-            <h2>Let's Build Your Stage</h2>
-            
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={song.title}
-                    onChange={(e) => setSong({ ...song, title: e.target.value })}
-                    placeholder="Title"
-                    required
-                />
-                <input
-                    type="text"
-                    value={song.musician}
-                    onChange={(e) => setSong({ ...song, musician: e.target.value })}
-                    placeholder="Musician/Show"
-                    required
-                />
-                <input
-                    type="text"
-                    value={song.notes}
-                    onChange={(e) => setSong({ ...song, notes: e.target.value })}
-                    placeholder="Notes"
-                />
-                <button type="submit" className='link-button'>Create</button>
-            </form>
-            {message && <p>{message}</p>}
+            <div className="song-container">
+                <div className="newSong-div">
+                    <h2>Create New Song</h2>
+                    <form className="newSongForm" onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            value={song.title}
+                            onChange={(e) => setSong({ ...song, title: e.target.value })}
+                            placeholder="Title"
+                            required
+                        />
+                        <input
+                            type="text"
+                            value={song.musician}
+                            onChange={(e) => setSong({ ...song, musician: e.target.value })}
+                            placeholder="Musician/Show"
+                            required
+                        />
+                        <input
+                            type="text"
+                            value={song.notes}
+                            onChange={(e) => setSong({ ...song, notes: e.target.value })}
+                            placeholder="Notes"
+                        />
+                        <button type="submit" className='create-button'>Create</button>
+                    </form>
+                    {message && <p>{message}</p>}
+                </div>
+            </div>
         </div>
     );
 };

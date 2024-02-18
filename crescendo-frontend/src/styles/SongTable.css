@@ -25,7 +25,7 @@
   overflow-y: auto;
 }
 
-/* Optionally, you can style the scrollbar */
+/* Optionally, you could style the scrollbar */
 .table-container::-webkit-scrollbar {
   width: 10px;
 }
