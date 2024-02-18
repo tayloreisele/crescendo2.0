@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
+import { useAuth } from './AuthContext';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -24,6 +26,7 @@ function Login() {
         if (response.ok) {
             // Login was successful
             localStorage.setItem('token', data.token); // Stores the token to continue user session
+            login();
             setMessage('Login successful!');
             navigate('/dashboard');  // Redirect to the dashboard
         } else {

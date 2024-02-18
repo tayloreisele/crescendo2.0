@@ -6,15 +6,22 @@ import Signup from './Signup';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Verify from './Verify';
 import Dashboard from './Dashboard';
+// Styling-song-table
 import SongTable from './components/SongTable';
 import AddSong from './pages/AddSong';
 
+
+
+import NavBar from './NavBar';
+import { AuthProvider } from './AuthContext';
 
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <AuthProvider>
+        <NavBar/>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
@@ -24,6 +31,7 @@ function App() {
           <Route path='/SongTable' element={<SongTable />} />
           <Route path='/AddSong' element={<AddSong />} />
         </Routes>
+        </AuthProvider>
       </div>
     </Router>
   );
