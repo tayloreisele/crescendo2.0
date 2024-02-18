@@ -2,33 +2,44 @@ package com.launchcode.crescendo.backend.controllers;
 
 import com.launchcode.crescendo.backend.repository.SongRepository;
 import com.launchcode.crescendo.backend.models.Song;
-//import com.launchcode.crescendo.backend.services.SongService;
+import com.launchcode.crescendo.backend.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/dashboard")
+@RestController
+@RequestMapping("api/songs")
 @CrossOrigin(origins = "http://localhost:3000") // Allows requests from localhost:3000
-//@RequestMapping("songs")//needed for search feature
+
 public class SongController {
     @Autowired
     private SongRepository songRepository;
 
+    @Autowired
+    private SongService songService;
+
 
     //Create a new song
-    @PostMapping("/song")
+    @PostMapping("/add")
     public Song createSong(@RequestBody Song song) {
-        return songRepository.save(song);
-        //return songService.createSong(song);//used when search feature is added
+       return songService.createSong(song);//used when search feature is added
     }
 
     //Get a list of all the songs
-    @GetMapping("/songs")
+    @GetMapping("/list")
     public List<Song> getAllSongs() {
         return songRepository.findAll();
     }
+
+    //Search the list of songs by title
+    @GetMapping("search")
+    public List<Song> searchSongs(@RequestParam String keyword) {
+        return songRepository.findByTitleContaining(keyword);
+    }
+}
+
 //    // next 9 lines used for search feature
 //    private SongService songService;
 //
@@ -41,7 +52,7 @@ public class SongController {
 //        return ResponseEntity.ok(songService.searchSongs(query));
 //    }
 
-}
+//}
 
 
 //    @GetMapping("update/{id}")
@@ -78,3 +89,4 @@ public class SongController {
 //        return "redirect:/songs";
 //    }
 //}
+
