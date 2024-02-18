@@ -1,0 +1,45 @@
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    flex: 1;
+  }
+  
+  .search-button {
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+
+  /* SongTable.css */
+
+.table-container {
+  max-height: 300px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
+
+/* Optionally, you could style the scrollbar */
+.table-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+  
