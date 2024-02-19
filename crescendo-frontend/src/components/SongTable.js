@@ -56,6 +56,13 @@ const SongTable = () => {
     setShowListAllButton(false);
   };
 
+  // Function to handle pressing the "Enter" key in the search input field
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch(); // Call the search function when "Enter" key is pressed
+    }
+  };
+
   return (
     <div className="containerForSongTable">
       <h2 className="text-center">Your Music Repertoire</h2>
@@ -69,7 +76,8 @@ const SongTable = () => {
             className="form-control mb-2"
             placeholder="Search By Song Title..."
             value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
+            onChange={e => setSearchTerm(e.target.value)} //updates the state of the searchTerm with the value entered by user
+            onKeyPress={handleKeyPress} // Allows user to hit enter to search as well
           />
         </div>
         <div> 
@@ -100,5 +108,7 @@ const SongTable = () => {
       </div>
     </div>
   );
-            }
+}
+
 export default SongTable;
+
