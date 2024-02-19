@@ -8,7 +8,7 @@ import Verify from './Verify';
 import Dashboard from './Dashboard';
 import CreateSongForm from './CreateSongForm'; // Import the CreateSongForm component
 
-// Styling-song-table
+
 import SongTable from './components/SongTable';
 import AddSong from './pages/AddSong';
 
@@ -31,7 +31,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path='/verify' element={<Verify />} />
           <Route path='/dashboard' element={<Dashboard />} />
-Create-Song-Form
+
           <Route path='/create-song' element={<CreateSongForm />} /> {/* Add a new route for CreateSongForm */}
 
           <Route path='/SongTable' element={<SongTable />} />

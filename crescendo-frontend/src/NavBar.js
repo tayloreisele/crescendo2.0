@@ -19,16 +19,16 @@ function NavBar() {
         <p className="brand-name">Crescendo</p>
       </div>
       <div className="nav-links">
-        <Link to="/" className="nav-link">Home</Link>
+        <Link to="/" className="nav-link1">Home</Link>
         {isAuthenticated ? (
           <>
-            <Link to="/dashboard" className="nav-link">Dashboard</Link>
-            <button onClick={handleLogout} className="nav-link">Logout</button>
+            <Link to="/dashboard" className="nav-link1">Dashboard</Link>
+            <button onClick={handleLogout} className="nav-link1">Logout</button>
           </>
         ) : (
           <>
-            <Link to="/login" className="nav-link">Login</Link>
-            <Link to="/signup" className="nav-link">Sign Up</Link>
+            <Link to="/login" className="nav-link1">Login</Link>
+            <Link to="/signup" className="nav-link1">Sign Up</Link>
           </>
         )}
       </div>
