@@ -20,44 +20,14 @@ function Dashboard() {
         .catch(error => console.log(error));
     }, []);
 
-    const uploadSheet = () => {
-        document.getElementById('fileInput').click();
-    }
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        const formData = new FormData();
-        formData.append('file', file);
-    
-        // Get the token from local storage
-        const token = localStorage.getItem('token');
-    
-        fetch('http://localhost:8080/upload', {
-            method: 'POST',
-            headers: {
-                // Include the token in the Authorization header
-                'Authorization': `Bearer ${token}`
-            },
-            body: formData,
-        })
-        .then(response => response.text())
-        .then(data => {
-            setMessage('File uploaded successfully!');
-            setSheets(oldSheets => [...oldSheets, data]);
-        })
-        .catch(error => {
-            console.error(error);
-            setMessage('File upload failed: ' + error.message);
-        });
+    const navigateToAddSong = () => {
+        navigate('/addSong');
     };
-
-    
 
     return (
         <div className="dashboard">
             <h2>Dashboard</h2>
-            <input type="file" id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
-            <button onClick={uploadSheet} className="upload-button">Upload Sheet Music</button>
+            <button onClick={navigateToAddSong} className="upload-button">Add Song</button>
             <p className='message'>{message}</p>
             <div className="sheets">
                 {sheets.map(sheet => (
@@ -68,7 +38,6 @@ function Dashboard() {
                     </div>
                 ))}
             </div>
-            
         </div>
     );
 };
