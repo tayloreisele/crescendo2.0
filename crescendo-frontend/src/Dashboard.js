@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
+import SongTable from './components/SongTable'; // Import the SongTable component
 
 function Dashboard() {
     const [sheets, setSheets] = useState([]);
@@ -51,8 +52,6 @@ function Dashboard() {
         });
     };
 
-    
-
     return (
         <div className="dashboard">
             <h2>Dashboard</h2>
@@ -68,7 +67,8 @@ function Dashboard() {
                     </div>
                 ))}
             </div>
-            
+            {/* Adding the SongTable component */}
+            <SongTable />
         </div>
     );
 };
