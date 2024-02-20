@@ -3,10 +3,9 @@ body {
 
 .App {
   text-align: center;
-  /* padding-top: 60px; */
 }
 
-
+/* Styles for login container */
 .login-container {
   display: flex;
   flex-direction: column;
@@ -23,10 +22,12 @@ body {
   margin-bottom: 20px;
 }
 
+/* Styles for links container */
 .link-container {
   margin-bottom: 10px;
 }
 
+/* Styles for signup form */
 .signup-form {
   margin-top: 30px;
 }
@@ -35,6 +36,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* Styles for links */
 .links-container {
   display: flex;
   justify-content: center;
@@ -56,13 +58,13 @@ body {
   background-color: #0056b3;
 }
 
+/* Message styles */
 .message {
   color: red;
   text-align: center;
 }
 
-
-/* Dashboard styles start */
+/* Dashboard styles */
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -127,7 +129,7 @@ body {
   background-color: #0056b3;
 }
 
-
+/* Navbar styles */
 .navbar {
   padding: 0 !important;
   height: 80px;
@@ -148,7 +150,9 @@ body {
   margin: 0;
 }
 
-.nav-link1, .nav-link:visited, .nav-link button {
+.nav-link1,
+.nav-link:visited,
+.nav-link button {
   float: left;
   color: white;
   text-align: center;
@@ -168,32 +172,54 @@ body {
 
 .navbar-logo {
   width: 80px;
-  
 }
 
-.bento-box {
-  margin: auto;
-  padding: 80px;
-  border-radius: 8px;
+/* Responsive styles for mobile devices */
+@media only screen and (max-width: 768px) {
+  /* Adjustments for login container */
+  .login-container {
+    height: auto;
+  }
+
+  .login-container form input {
+    margin-bottom: 10px;
+  }
+
+  /* Adjustments for signup form */
+  .signup-form {
+    margin-top: 20px;
+  }
+
+  .signup-form input {
+    margin-bottom: 10px;
+  }
+
+  /* Adjustments for links container */
+  .links-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .link-button {
+    margin-bottom: 10px;
+  }
 }
 
-h1 {
-  margin: 0;
-  font-size: 40px;
-}
+/* Responsive styles for smaller devices */
+@media only screen and (max-width: 576px) {
+  /* Adjustments for navbar */
+  .navbar {
+    height: 60px;
+  }
 
+  .brand-name {
+    font-size: 20px;
+  }
 
-.landing-page {
-  background-image: url('background2.jpg');
-  background-size: cover;
-  background-position: top center;
-  height: 100vh;
-  margin-top: -60px;
-  padding-top: 60px;
-}
-
-.spacer {
-  flex-grow: 0;
-  flex-shrink: 0;
-  height: 50px;
+  .nav-link1,
+  .nav-link:visited,
+  .nav-link button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 }
