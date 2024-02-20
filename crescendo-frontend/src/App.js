@@ -8,9 +8,6 @@ import Verify from './Verify';
 import Dashboard from './Dashboard';
 import SongTable from './components/SongTable';
 import AddSong from './pages/AddSong';
-
-
-
 import NavBar from './NavBar';
 import { AuthProvider } from './AuthContext';
 
