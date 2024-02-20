@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import '../styles/SongTable.css';
+import EditLibrary from './EditLibrary'; // Import EditLibrary component
 
 const SongTable = () => {
   const [filteredSongs, setFilteredSongs] = useState([]);
@@ -74,7 +75,7 @@ const SongTable = () => {
           {showListAllButton && <button className="btn btn-primary mb-2" onClick={handleListAll}>List All</button>}
         </div>
       </div>
-      <div className="table-container">
+      <div className="container">
         <table className="table table-bordered table-striped table-advanced table-hover">
           <thead>
             <tr>

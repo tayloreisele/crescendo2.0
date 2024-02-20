@@ -10,6 +10,8 @@ import SongTable from './components/SongTable';
 import AddSong from './pages/AddSong';
 import NavBar from './NavBar';
 import { AuthProvider } from './AuthContext';
+import EditLibrary from './components/EditLibrary';
+import EditSong from './components/EditSong';
 
 
 
@@ -27,7 +29,8 @@ function App() {
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/SongTable' element={<SongTable />} />
           <Route path='/AddSong' element={<AddSong />} />
-
+          <Route path='/EditLibrary' element={<EditLibrary/>}/>
+          <Route path={`/editSong/:id`} element={<EditSong />} />
         </Routes>
         </AuthProvider>
       </div>

@@ -16,11 +16,15 @@ function Dashboard() {
     const navigateToAddSong = () => {
         navigate('/addSong');
     };
+    const navigateToEditLibrary = () => {
+        navigate('/Editlibrary')
+    }
 
     return (
         <div className="dashboard">
             <h2>Dashboard</h2>
             <button onClick={navigateToAddSong} className="upload-button">Add Song</button>
+            <button onClick={navigateToEditLibrary} className="edit-button">Edit Library</button>
             <p className='message'>{message}</p>
             {/* Render the SongTable component */}
             <SongTable />

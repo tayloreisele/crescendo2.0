@@ -100,7 +100,22 @@ body {
   cursor: pointer;
 }
 
+.edit-button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #007BFF;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
 .upload-button:hover {
+  background-color: #0056b3;
+}
+.edit-button:hover{
   background-color: #0056b3;
 }
 
