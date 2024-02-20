@@ -1,4 +1,4 @@
-.containerForSongTable {
+.container {
   max-width: 800px;
   margin: 0 auto;
 }
@@ -13,11 +13,11 @@
 }
 
 .search-button {
-  margin-left: 10px; /* Adjust the margin as needed */
+  margin-left: 10px;
 }
 
 .table-container {
-  max-height: 300px; /* Adjust the maximum height as needed */
+  max-height: 300px;
   overflow-y: auto;
 }
 
@@ -38,16 +38,34 @@
   background: #555;
 }
 
+.song-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.song-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.song-list li button {
+  margin-left: 10px;
+}
+.song-list {
+  margin-left: 20px;
+}
+
 /* Media queries for mobile responsiveness */
 @media only screen and (max-width: 768px) {
-  .containerForSongTable {
-    max-width: 90%; /* Adjust maximum width for smaller screens */
+  .container {
+    max-width: 90%;
   }
 }
 
 @media only screen and (max-width: 576px) {
-  .containerForSongTable {
-    max-width: 100%; /* Adjust maximum width to fill entire viewport */
-    padding: 0 10px; /* Add some padding for better readability */
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
   }
 }

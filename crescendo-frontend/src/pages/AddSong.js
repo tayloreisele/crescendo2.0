@@ -48,7 +48,7 @@ const AddSong = () => {
 
     const handleSearch = async (searchTerm) => {
         try {
-            const accessToken = 'BQC-8JTssCLHoNjUudgj6CGr5mEnA27hX711-pT0Xj3QMGSWz6o8cSBtTI974Ouh6-UkbsvN1tzZx0_m8XL5KhcuX2-0qhRUBVG6-ADiuvFSEwNdyLjOaAHxJCa8yDyUvEdNScph2fTR8NMQglWmk8DJGFmrjFpafQi_AUxa0jgculCav0rYVb9ykZRCZCZkbT_Tt3jEmnmexjsFkCSRPkj9PvVQtuB-zNWBAwwsWHcPQaOygSRn9eecyQ';
+            const accessToken = 'BQBfs-Go2pIWQvdm-be5Uk-0cknL3W5jA8WUcquPX33MgWG8NSHMaNsRQqDpwXYQIj0BMCIw478tuWOkP5FOzMqbVaXm02klPdjDJzreGRHxgew0_VFPOWsL1KBhhkdzkDlW1nh1ITVJaypt3DEIMO5N3e_mogVbpTvE5JOxO9Dxyy0qDc50mSiKvXh0TIOF6eIct6AaNUY-Ch295HmJixXk0FCP13USzS5nJ40GNrDhhVjn-yifrkrGEw';
             const encodedSearchTerm = encodeURIComponent(searchTerm); // Encode the search term
             const response = await axios.get('https://api.spotify.com/v1/search', {
                 params: {
