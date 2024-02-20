@@ -6,8 +6,6 @@ import Login from './Login';
 import Signup from './Signup';
 import Verify from './Verify';
 import Dashboard from './Dashboard';
-
-
 import SongTable from './components/SongTable';
 import AddSong from './pages/AddSong';
 
@@ -30,8 +28,6 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path='/verify' element={<Verify />} />
           <Route path='/dashboard' element={<Dashboard />} />
-
-
           <Route path='/SongTable' element={<SongTable />} />
           <Route path='/AddSong' element={<AddSong />} />
 
