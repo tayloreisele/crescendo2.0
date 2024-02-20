@@ -22,16 +22,18 @@ const AddSong = () => {
             formData.append('spotifyTrackId', song.spotifyTrackId);
             formData.append('file', song.file);
 
-            const response = await axios.post('http://localhost:8080/api/songs/add', formData, {
+            const response = await fetch('http://localhost:8080/api/songs/add', {
+                method: 'POST',
                 headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(song),
             });
 
-            if (response.status === 200) {
+            if (response.ok) {
                 setMessage('New Song Added');
-                navigate('/');
-                setSong({ title: '', musician: '', notes: '', spotifyTrackId: '', file: null });
+                navigate('/SongTable'); // Navigate to the list of songs page
+                setSong({ title: '', musician: '', notes: '', spotifyTrackId:'' }); // Clear the form fields after successful addition
             } else {
                 setMessage('Failed to add song');
             }
@@ -40,7 +42,6 @@ const AddSong = () => {
             setMessage('Failed to add song');
         }
     };
-
     const handleFileChange = (event) => {
         setSong({ ...song, file: event.target.files[0] });
     };
