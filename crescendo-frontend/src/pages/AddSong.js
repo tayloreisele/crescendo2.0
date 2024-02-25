@@ -124,8 +124,11 @@ const AddSong = () => {
                     {message && <p>{message}</p>}
                 </div>
             </div>
+            console.log("hello");
         </div>
     );
+
+    
 };
 
 export default AddSong;
