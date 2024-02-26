@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import java.util.List;
@@ -46,7 +47,25 @@ public class SongServiceImpl implements SongService {
 
 
 
+    @Override
+    public List<Song> getFavoriteSongs() {
+        return songRepository.findByFavoriteTrue();
+    }
 
+
+    @Override
+    public Song toggleFavorite(Long id) {
+        return songRepository.findById(id).map(song -> {
+            song.setFavorite(!song.isFavorite());
+            return songRepository.save(song);
+        }).orElseThrow(() -> new NoSuchElementException("Song not found with id " + id));
+    }
+
+
+    @Override
+    public Song save(Song song) {
+        return songRepository.save(song);
+    }
 
 
 

@@ -29,5 +29,7 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
    // List<Song>findByTitle(String title); //where title like "%?%"
     List<Song> findByTitleContaining(String keyword);
     Optional<Song> findById(long id);
+
+    List<Song> findByFavoriteTrue();
 }
 

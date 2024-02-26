@@ -21,8 +21,12 @@ public interface SongService {
     List<Song> getAllSongs();
 
 
+    List<Song> getFavoriteSongs();
 
 
+    Song toggleFavorite(Long id);
+
+    Song save(Song song);
 
     Song createSongWithImage(Song song, MultipartFile imageFile) throws IOException;
 }
