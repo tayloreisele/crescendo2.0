@@ -3,10 +3,14 @@ package com.launchcode.crescendo.backend.controllers;
 import com.launchcode.crescendo.backend.repository.UserRepository;
 import com.launchcode.crescendo.backend.VerificationToken;
 import com.launchcode.crescendo.backend.repository.VerificationTokenRepository;
+
+import jakarta.servlet.http.HttpSession;
+
 import com.launchcode.crescendo.backend.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +25,6 @@ import java.util.UUID;
 
 @CrossOrigin(origins = "*")
 @RestController
-//@RequestMapping("/user")
 public class UserController {
     private final UserRepository userRepository;
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -114,14 +117,28 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User user) {
+    public ResponseEntity<?> login(@RequestBody User user, HttpSession session) {
         User existingUser = userRepository.findByUsername(user.getUsername());
         if (existingUser != null && existingUser.getPassword().equals(hashPassword(user.getPassword()))) {
             // User exists and password is correct
+            session.setAttribute("user", existingUser);
+            System.out.println("User added to session: " + session.getId()); // Debugging
             return ResponseEntity.ok().body("{\"message\":\"Login successful!\"}");
         } else {
             // User does not exist or password is incorrect
             return ResponseEntity.badRequest().body("{\"message\":\"Invalid username or password.\"}");
         }
     }
+
+    @GetMapping("/auth/check")
+    public ResponseEntity<?> checkAuth(HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            // User is logged in
+            return ResponseEntity.ok().body("{\"status\":\"authenticated\"}");
+        } else {
+            // User is not logged in
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"status\":\"unauthenticated\"}");
+        }
+    }
+
 }

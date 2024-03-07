@@ -11,16 +11,15 @@ const SongTable = () => {
   const [showListAllButton, setShowListAllButton] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchSongs();
-  }, []);
 
   const fetchSongs = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/songs/list');
-      if (response.ok) {
-        const data = await response.json();
-        setFilteredSongs(data);
+      const response = await axios.get('http://localhost:8080/api/songs/list', {
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        console.log("Fetched songs:", response.data); // Add this line to inspect the fetched data
+        setFilteredSongs(response.data);
         setShowListAllButton(false);
       } else {
         console.error('Failed to get songs');
@@ -30,9 +29,18 @@ const SongTable = () => {
     }
   };
 
+
+  useEffect(() => {
+    fetchSongs();
+  }, []);
+
+
+
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/songs/search?keyword=${searchTerm}`);
+      const response = await axios.get(`http://localhost:8080/api/songs/search?keyword=${searchTerm}`, {
+        withCredentials: true,
+      });
       setFilteredSongs(response.data);
       setShowListAllButton(true);
     } catch (error) {
@@ -54,12 +62,35 @@ const SongTable = () => {
     return `https://open.spotify.com/track/${trackId}`;
   };
 
+
+
+  const toggleFavorite = async (songId) => {
+    try {
+      await axios.put(`http://localhost:8080/api/songs/${songId}/favorite`, {}, {
+        withCredentials: true,
+      });
+      // After toggling, refresh the song list
+      fetchSongs();
+    } catch (error) {
+      console.error('Error toggling favorite status:', error);
+    }
+  };
+
+
+  const [showFavorites, setShowFavorites] = useState(false);
+  const handleShowFavorites = () => {
+    setShowFavorites(!showFavorites);
+  };
+
   return (
     <div className="containerFor">
       <h2 className="text-center">Your Music Repertoire</h2>
       <div className="search-container">
         <div>
           <button className="btn btn-primary mb-2" onClick={handleAddSong}>Add New Song</button>
+          <button className="btn btn-primary mb-2" onClick={handleShowFavorites}>
+            {showFavorites ? "Show All Songs" : "Show Favorites"}
+          </button>
         </div>
         <div className="search-input">
           <input
@@ -83,16 +114,22 @@ const SongTable = () => {
               <th>Musician/Show</th>
               <th>Notes</th>
               <th>Listen on Spotify</th>
+              <th>Favorite</th>
             </tr>
           </thead>
           <tbody>
-            {filteredSongs.map(song => (
+            {filteredSongs
+            .filter(song => !showFavorites || song.favorite)
+            .map(song => (
               <tr key={song.id} onClick={() => navigate(`/song/${song.id}`)} style={{ cursor: 'pointer' }}>
                 <td>{song.title}</td>
                 <td>{song.musician}</td>
                 <td>{song.notes}</td>
                 <td>
                   {song.spotifyTrackId && <a href={getSpotifyLink(song.spotifyTrackId)} target="_blank" rel="noopener noreferrer">Listen</a>}
+                </td>
+                <td onClick={(e) => { e.stopPropagation(); toggleFavorite(song.id); }}>
+                  {song.favorite ? '★' : '☆'}
                 </td>
               </tr>
             ))}

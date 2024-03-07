@@ -51,7 +51,7 @@ public class SpotifySongService {
     }
 
     // Method to delete a song by its ID
-    public void deleteSong(int id) {
+    public void deleteSong(Long id) {
         // Implement error handling if the song is not found
         songRepository.deleteById(id);
     }
