@@ -2,14 +2,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import './App.css';
 import logo from './Logo.png';
 import { useAuth } from './AuthContext';
+import axios from 'axios';
 
 function NavBar() {
     const { isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
   
-    const handleLogout = () => {
-      logout();
-      navigate('/');
+    const handleLogout = async () => {
+      try {
+        await axios.post('http://localhost:8080/logout', {}, { withCredentials: true });
+        localStorage.removeItem('token');
+        logout();
+        navigate('/')
+      } catch (error) {
+        console.error('Logout failed', error);
+      }
     };
 
   return (

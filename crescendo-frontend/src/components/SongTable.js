@@ -11,16 +11,15 @@ const SongTable = () => {
   const [showListAllButton, setShowListAllButton] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchSongs();
-  }, []);
 
   const fetchSongs = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/songs/list');
-      if (response.ok) {
-        const data = await response.json();
-        setFilteredSongs(data);
+      const response = await axios.get('http://localhost:8080/api/songs/list', {
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        console.log("Fetched songs:", response.data); // Add this line to inspect the fetched data
+        setFilteredSongs(response.data);
         setShowListAllButton(false);
       } else {
         console.error('Failed to get songs');
@@ -30,9 +29,18 @@ const SongTable = () => {
     }
   };
 
+
+  useEffect(() => {
+    fetchSongs();
+  }, []);
+
+
+
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/songs/search?keyword=${searchTerm}`);
+      const response = await axios.get(`http://localhost:8080/api/songs/search?keyword=${searchTerm}`, {
+        withCredentials: true,
+      });
       setFilteredSongs(response.data);
       setShowListAllButton(true);
     } catch (error) {
@@ -58,7 +66,9 @@ const SongTable = () => {
 
   const toggleFavorite = async (songId) => {
     try {
-      await axios.put(`http://localhost:8080/api/songs/${songId}/favorite`);
+      await axios.put(`http://localhost:8080/api/songs/${songId}/favorite`, {}, {
+        withCredentials: true,
+      });
       // After toggling, refresh the song list
       fetchSongs();
     } catch (error) {

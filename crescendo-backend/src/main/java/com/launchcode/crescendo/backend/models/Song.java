@@ -32,6 +32,10 @@ public class Song {
     @Column(name = "image", columnDefinition = "LONGBLOB")
     private byte[] image;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
     private boolean favorite;
 
     public Song(String title, String musician, String notes) {
@@ -105,5 +109,17 @@ public class Song {
                 ", musician='" + musician + '\'' +
                 ", notes='" + notes + '\'' +
                 '}';
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

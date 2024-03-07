@@ -24,13 +24,13 @@ const AddSong = () => {
 
             const response = await fetch('http://localhost:8080/api/songs/add', {
                 method: 'POST',
-                // body: JSON.stringify(song),
+                /// body: JSON.stringify(song),
                 body: formData,
             });
 
             if (response.ok) {
                 setMessage('New Song Added');
-                navigate('/SongTable'); // Navigate to the list of songs page
+                navigate('/SongTable', { state: { key: Date.now()}}); // Navigate to the list of songs page
                 setSong({ title: '', musician: '', notes: '', spotifyTrackId:'' }); // Clear the form fields after successful addition
             } else {
                 setMessage('Failed to add song');

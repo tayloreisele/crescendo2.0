@@ -2,12 +2,15 @@ package com.launchcode.crescendo.backend.controllers;
 
 import com.launchcode.crescendo.backend.repository.SongRepository;
 import com.launchcode.crescendo.backend.models.Song;
+import com.launchcode.crescendo.backend.models.User;
 import com.launchcode.crescendo.backend.services.SongService;
 import org.springframework.http.MediaType;
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,6 +44,16 @@ public class SongController {
     // }
 
 
+    @GetMapping("/testSession")
+    public ResponseEntity<?> testSession(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No user in session");
+        }
+        return ResponseEntity.ok("User in session: " + user.getUsername());
+    }
+
+
     @PostMapping("/add")
     public ResponseEntity<Song> uploadSongWithImage(
             @RequestParam(value = "title", required = false) String title,
@@ -60,10 +73,45 @@ public class SongController {
     }
 
 
+
+//    @PostMapping("/add")
+//    public ResponseEntity<Song> uploadSongWithImage(
+//            HttpSession session,
+//            @RequestParam(value = "title", required = false) String title,
+//            @RequestParam(value = "musician", required = false) String musician,
+//            @RequestParam(value = "file", required = false) MultipartFile file) {
+//        try {
+//            User user = (User) session.getAttribute("user");
+//            if (user == null) {
+//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+//            }
+//
+//            Song song = new Song();
+//            song.setTitle(title);
+//            song.setMusician(musician);
+//            song.setFileName(file.getOriginalFilename());
+//            song.setUser(user); // Associate the song with the logged-in user
+//
+//            Song savedSong = songService.createSongWithImage(song, file);
+//            return ResponseEntity.ok(savedSong);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(null);
+//        }
+//    }
+
+
     //Get a list of all the songs
     @GetMapping("/list")
-    public List<Song> getAllSongs() {
-        return songRepository.findAll();
+    public ResponseEntity<?> getUserSongs(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId()); // Debugging
+        if (user == null) {
+            System.out.println("User not found in session"); // Debugging
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+        List<Song> songs = songRepository.findByUserId(user.getId());
+        return ResponseEntity.ok().body(songs);
+        
     }
 
     //Search the list of songs by title
@@ -95,7 +143,7 @@ public class SongController {
 
     @DeleteMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity<String> deleteSong(@PathVariable int id) {
+    public ResponseEntity<String> deleteSong(@PathVariable Long id) {
         // Check if the song exists
         if (!songRepository.existsById(id)) {
             return ResponseEntity.notFound().build(); // Return 404 if the song does not exist

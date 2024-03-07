@@ -27,6 +27,7 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java:8.0.28'
 //	runtimeOnly 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
 
 }
 

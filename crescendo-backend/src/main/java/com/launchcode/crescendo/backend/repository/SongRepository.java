@@ -7,29 +7,13 @@ import java.util.Optional;
 import java.util.List;
 
 @Repository
-public interface SongRepository extends JpaRepository<Song, Integer> {
+public interface SongRepository extends JpaRepository<Song, Long> {
 
-
-
-//    @Query("SELECT s FROM Song s WHERE " +
-//            "s.title LIKE CONCAT('%',:query, '%')" +
-//            "s.musician LIKE CONCAT('%',:query, '%')")
-//    List<Song> searchSongs(String query);
-
-//    @Query(value = "SELECT * FROM crescendo.songs s WHERE " +
-//            "s.title LIKE CONCAT('%',:query, '%')" +
-//            "s.musician LIKE CONCAT('%',:query, '%')", nativeQuery = true)
-//    List<Song> searchSongsSQL(String query);
-
-//    @Query(value = "SELECT * FROM songs WHERE " +
-//            "title LIKE CONCAT('%',:query, '%')" +
-//            "musician LIKE CONCAT('%',:query, '%')", nativeQuery = true)
-//    List<Song> searchSongsSQL(String query);
-
-   // List<Song>findByTitle(String title); //where title like "%?%"
     List<Song> findByTitleContaining(String keyword);
     Optional<Song> findById(long id);
 
     List<Song> findByFavoriteTrue();
+
+    List<Song> findByUserId(Long userId);
 }
 

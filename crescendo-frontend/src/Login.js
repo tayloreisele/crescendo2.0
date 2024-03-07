@@ -18,17 +18,20 @@ function Login() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ username, password }),
+            credentials: 'include'
         });
 
         const data = await response.json();
 
         if (response.ok) {
             // Login was successful
-            localStorage.setItem('token', data.token); // Stores the token to continue user session
+            // localStorage.setItem('token', data.token); // Stores the token to continue user session
             login();
             setMessage('Login successful!');
             navigate('/dashboard');  // Redirect to the dashboard
+            console.log(data);
+            console.log(data.token);
         } else {
             // There was an error
             setMessage(data.message);

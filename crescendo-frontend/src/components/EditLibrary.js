@@ -13,7 +13,9 @@ const EditLibrary = () => {
 
   const fetchSongs = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/songs/list');
+      const response = await axios.get('http://localhost:8080/api/songs/list', {
+        withCredentials: true,
+      });      
       if (response.ok) {
         const data = await response.json();
         setSongs(data);
